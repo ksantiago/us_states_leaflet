@@ -1,0 +1,42 @@
+  <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Basic Map San Antonio Census Tracts</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script> 
+		<style type="text/css">
+		</style>
+    </head>
+    <body>
+        <script type="text/javascript">
+		    var w = 1000;
+			var h = 1000;
+			
+		    //var xy = d3.geo.albersUsa().translate([-900,950]).scale(28000);
+			//var path = d3.geo.path().projection(xy);
+
+			d3.json("san_antonio.json", function(json) {
+
+				//var projection = d3.geo.mercator();
+
+				var path = d3.geo.path();
+			
+				var svg = d3.select("body")
+					.append("svg")
+					.attr("width", w)
+					.attr("height", h);
+			  
+				svg.selectAll("path")
+					.data(json.features)
+					.enter()
+					.append("path")
+					.attr("d", path);
+			});
+			
+		   
+
+		   
+        </script>
+    </body> 
+
+</html>
