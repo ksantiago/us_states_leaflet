@@ -1,42 +1,33 @@
 <html lang="en">
         <head>
                 <meta charset="utf-8">
-                <title>San Antonio Leaflet</title>
-               
+                <title>US States Leaflet</title>
+
                 <style type="text/css">
-                        #map { height: 800px; width:800px; }              
-                </style> 
-				<link rel="stylesheet" href="leaflet/leaflet.css" />
-			 	<!--[if lte IE 8]>
-			     	<link rel="stylesheet" href="leaflet/leaflet.ie.css" />
-			 	<![endif]--> 
-			 	<script src="leaflet/leaflet.js"></script>
-				<script src="jquery/jquery-1.8.2.js"></script>
-			 
+                        #map { height: 800px; width:800px; }
+                </style>
+        <link rel="stylesheet" href="leaflet/leaflet.css" />
+        <!--[if lte IE 8]>
+            <link rel="stylesheet" href="leaflet/leaflet.ie.css" />
+        <![endif]-->
+        <script src="leaflet/leaflet.js"></script>
+        <script src="jquery/jquery-1.8.2.js"></script>
+
         </head>
-        <body> 
-			   <div id="map"></div> 
-                <script type="text/javascript"> 
-					var map = L.map('map');
-					map.setView(new L.LatLng(29.475620, -98.491831), 10)
-					
-					L.tileLayer('http://{s}.tile.cloudmade.com/88aa19e14c744a32a653f57053ebecd9/22677/256/{z}/{x}/{y}.png', { 
-					    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Imagery © <a href="http://cloudmade.com">CloudMade</a>'
-						
-					}).addTo(map); 
-					
-					
-					$.get("san_antonio.json", function(data) {
-           
-						//When GeoJSON is loaded
-						var geojsonLayer = new L.GeoJSON(data);		//New GeoJSON layer
-						map.addLayer(geojsonLayer);			//Add layer to map 
-						  
+        <body>
+         <div id="map"></div>
+          <script type="text/javascript">
 
-					});
-					
-	   
+            var map = L.map('map').setView([37.8, -96], 4);
 
-                </script> 
+            L.tileLayer('http://{s}.tile.cloudmade.com/88aa19e14c744a32a653f57053ebecd9/22677/256/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+                styleId: 22677
+            }).addTo(map);
+
+            L.geoJson(statesData).addTo(map);
+
+
+          </script>
         </body>
 </html>
